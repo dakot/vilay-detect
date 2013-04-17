@@ -189,7 +189,7 @@ class MainWindow(QtGui.QWidget):
             moduleName = os.path.basename(l)[0:-3]
             if moduleName == '__init__' or moduleName == 'IDetector':
                 continue
-            __import__('detectors.'+moduleName)
+            __import__('vilay.detectors.'+moduleName)
         
         # search through detector classes
         self.vd.actDetector = None   

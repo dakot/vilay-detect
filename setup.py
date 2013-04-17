@@ -29,8 +29,8 @@ if 'setuptools' in sys.modules:
 def main(**extra_args):
     if "build_py" in sys.argv:
         from subprocess import call
-        for uifile in glob(opj('vilay', 'ui', '*.ui')):
-            uipyfile = '%s%s' % (uifile[:-2], 'py')
+        for uifile in glob(opj('vilay/ui', '*.ui')):
+            uipyfile = '%s%s' % (uifile[:-3], '_ui.py')
             command = ["pyuic4", "-o", uipyfile, uifile]
             try:
                 exitcode = call(command)
@@ -76,7 +76,7 @@ def main(**extra_args):
           url          = 'https://github.com/dakot/vilay-detect',
           download_url = 'https://github.com/dakot/vilay-detect/tags',
           description  = '',
-          long_description = open('README.rst').read(),
+          long_description = open('README.md').read(),
           classifiers  = ["Development Status :: 3 - Alpha",
                           "Environment :: GUI",
                           "Intended Audience :: VideoAnnotation/Science/Research",

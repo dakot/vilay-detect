@@ -13,7 +13,7 @@
 import logging
 lgr = logging.getLogger(__name__)
 import argparse
-# from vilay import cfg
+from vilay import config
 
 __docformat__ = 'restructuredtext'
 
@@ -23,7 +23,7 @@ __docformat__ = 'restructuredtext'
 parser_args = dict(formatter_class=argparse.RawDescriptionHelpFormatter)
 
 def setup_parser(parser):
-    parser.add_argument('media', help="path of media file")
+    parser.add_argument('media', help="path of media file", nargs="?")
     
     
 def run(args):
@@ -32,8 +32,8 @@ def run(args):
     
     vd = VilayDetect(False)
     
-    if not args.movie_path is None:
-        vd.loadFilm(args.movie_path)
+    if not args.media is None:
+        vd.newFile(args.media)
     
     vd.wait()
     
