@@ -1,0 +1,38 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>icons/autostop.png</file>
+        <file>icons/backward.png</file>
+        <file>icons/down.png</file>
+        <file>icons/forward.png</file>
+        <file>icons/left.png</file>
+        <file>icons/load.png</file>
+        <file>icons/next.png</file>
+        <file>icons/next2.png</file>
+        <file>icons/pause.png</file>
+        <file>icons/previous.png</file>
+        <file>icons/previous2.png</file>
+        <file>icons/right.png</file>
+        <file>icons/stop.png</file>
+        <file>icons/up.png</file>
+    </qresource>
+    <qresource prefix="/free-design-icons">
+        <file>icons/free-design-icons/Target1.png</file>
+        <file>icons/free-design-icons/Revert.png</file>
+        <file>icons/free-design-icons/Close.png</file>
+        <file>icons/free-design-icons/Export.png</file>
+        <file>icons/free-design-icons/New file.png</file>
+        <file>icons/free-design-icons/Import.png</file>
+        <file>icons/free-design-icons/Open.png</file>
+        <file>icons/free-design-icons/Save.png</file>
+        <file>icons/free-design-icons/Settings.png</file>
+        <file>icons/free-design-icons/Selection.png</file>
+        <file>icons/free-design-icons/Square.png</file>
+        <file>icons/free-design-icons/Hexagon.png</file>
+        <file>icons/free-design-icons/Circle.png</file>
+        <file>icons/free-design-icons/Exit.png</file>
+        <file>icons/free-design-icons/Scan film.png</file>
+        <file>icons/free-design-icons/Magic hat.png</file>
+        <file>icons/free-design-icons/Redo.png</file>
+        <file>icons/free-design-icons/Undo.png</file>
+    </qresource>
+</RCC>
