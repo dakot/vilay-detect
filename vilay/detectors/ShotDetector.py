@@ -1,6 +1,6 @@
+from vilay.detectors.IDetector import IDetector
 from vilay.core.Descriptor import MediaTime
 from vilay.core.DescriptionScheme import DescriptionScheme
-from vilay.detectors.IDetector import IDetector
 
 import cv2
 import numpy as np
@@ -9,13 +9,6 @@ class ShotDetector(IDetector):
     def getName(self):
         return "Shot Detector"
     
-    # init is implemented from root class
-    # 
-    # variables:
-    #   tree
-    #   frames
-    #   
-    #   
     def initialize(self):
         self.threshold = 45 
     
@@ -28,6 +21,7 @@ class ShotDetector(IDetector):
             times = []
             cuts = []
             
+            # go through every frame
             for frameIdx in range(mediaTime.startTime, mediaTime.startTime + mediaTime.duration):
                 actFrame = film.getFrame(frameIdx)
                 
@@ -40,10 +34,12 @@ class ShotDetector(IDetector):
                     times.append(frameIdx)
                 
                 frame1 = frame2
-                
+            
+            # numpy array conversion
             times = np.array(times)
             values = np.array(values)
             
+            # calculate second derivation 
             fstDiff = np.gradient(values)
             sndDiff = np.gradient(fstDiff)
             
@@ -57,6 +53,7 @@ class ShotDetector(IDetector):
             
             cuts = np.array(cuts)
             
+            # create DS and add descriptor
             for i in range(len(cuts)-1):
                 actDS = DescriptionScheme('Shot '+str(i+1), 'Shot Detector')
                 mediaTime = MediaTime('Shot Detector', cuts[i], cuts[i+1]-cuts[i])
@@ -65,11 +62,11 @@ class ShotDetector(IDetector):
             
     
     def preProcessing(self, img):
+        # make small image and equalize histogram
         img = cv2.resize(img,(10,10))
         img2 = np.zeros((img.shape[0],img.shape[1],1),'uint8')
         for i in range(3):
             img2[:,:,0] = img[:,:,i]
             img[:,:,i] = cv2.equalizeHist(img2)
         
-        #img = cv2.GaussianBlur(img,(3,3),2)
         return img

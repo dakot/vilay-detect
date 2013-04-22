@@ -15,10 +15,5 @@ class VDData:
             self.film = film
         else: 
             raise("unknown type of input")
-              
-    def addDescriptionScheme(self, newSemanticObject, oldSemanticObject):
-        return oldSemanticObject.addDescriptionScheme(newSemanticObject)
     
-    def addDescriptor(self, detectObject):
-        self.descriptors.append(detectObject)
     

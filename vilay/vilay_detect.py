@@ -2,11 +2,12 @@ import os
 import sys
 
 from PyQt4 import QtCore, QtGui
-from vilay.ui.mainWindow import MainWindow
 
+from vilay.ui.MainWindow import MainWindow
 from vilay.core.VDData import VDData
 from vilay.core.Film import Film
 #from core import detection, detect_object, detect_time, position
+from vilay.detectors.DetectorWrapper import DetectorWrapper 
 
 import cv2
 
@@ -21,6 +22,9 @@ class VilayDetect:
         self.app = QtGui.QApplication(sys.argv)
         self.mainWin = MainWindow(self)
         self.mainWin.show()
+        
+        # init detector
+        self.detector = None
         
         if eventloop:
             self.wait()
@@ -59,6 +63,17 @@ class VilayDetect:
         self.mainWin.showImg(pic)
         self.mainWin.ui.navigationBar.setCursor(frameIdx)
         self.mainWin.updateFilmString()
+    
+    def initDetector(self, detector):
+        self.detector = detector
+        if not self.detector is None:
+            self.detector = DetectorWrapper(self, detector)
+    
+    def startDetector(self):
+        if not self.detector is None:
+            self.detector.startDetector()
+        else:
+            print "Warning: no Detector selected"
     
     def selectItemAt(self, frameIdx, xPos = None, yPos = None):
         pass

@@ -23,11 +23,15 @@ Installation
 
 		PYTHONPATH=. bin/vilay show [mediafile]
 
+	or if not working
+
+		PYTHONPATH=. python bin/vilay show [mediafile]
+
 Sample Usage
 ------------
 
-1.	Open a video-file using the "New file" Button. (Larger videos may take
-	some time)
+1.	Open a video-file (e.g. indi_short.m4v) using the "New file" Button. 
+	(Larger videos may take some time)
 
 2.	Select "Shot Detector" and press "Start Detector" Button. After a while
 	you see elements comming up in the right Box.
