@@ -1,7 +1,7 @@
 from PyQt4 import QtCore, QtGui
 
 from vilay.core.DescriptionScheme import DescriptionScheme
-from vilay.core.Descriptor import Descriptor
+from vilay.core.Descriptor import Descriptor, MediaTime
 
 class AnnotationTree(QtGui.QTreeWidget):
 
@@ -77,6 +77,11 @@ class AnnotationTree(QtGui.QTreeWidget):
             menu.actions()[-1].triggered.connect(self.contextMenuMove)
             menu.addAction(self.tr("Delete"))
             menu.actions()[-1].triggered.connect(self.contextMenuDelete)
+            if isinstance(self.selectedDItems[0], MediaTime):
+                menu.addSeparator()
+                menu.addAction(self.tr("Set as workspace"))
+                menu.actions()[-1].triggered.connect(self.contextMenuSetWorkspace)
+            
 #             menu.addSeparator()
 #             menu.addAction(self.tr("Settings"))
 #             menu.actions()[-1].triggered.connect(self.contextMenuDescriptorSettings)
@@ -102,6 +107,10 @@ class AnnotationTree(QtGui.QTreeWidget):
     
     def contextMenuMove(self):
         QtGui.QMessageBox.information(self, "Information", "Use drag and drop for moving Objects.")
+    
+    def contextMenuSetWorkspace(self):
+        mediaTime = self.selectedDItems[0]
+        self.vd.mainWin.ui.navigationBar.setInterval(mediaTime.startTime, mediaTime.startTime + mediaTime.duration -1)
     
     def contextMenuAddDescriptor(self):
         parent = self.selectedDItems[0]
